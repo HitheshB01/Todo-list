@@ -19,6 +19,9 @@ const todoList = document.querySelector('.todo-list');
 
 //event listener
 todoButton.addEventListener("click", addTodo);
+todoList.addEventListener("click",deletecheck);
+// todoList.addEventListener("click",check)
+
 
 //Functions
 function addTodo(event) {
@@ -36,16 +39,16 @@ function addTodo(event) {
 
     //completed CHECK MARK BUTTON
     const completedButton = document.createElement('button');
-    // completedButton.innerHTML='<i class="fa-solid fa-plus"></i>';
-    completedButton.innerText='checked';
+    completedButton.innerHTML='<i class="fa-solid fa-check"></i>';
+    // completedButton.innerText='checked';
     completedButton.classList.add('complete-btn');
     todoDiv.appendChild(completedButton);
 
 
     //completed TRAsh MARK BUTTON
     const trashButton = document.createElement('button');
-    // trashButton.innerHTML='<i class="fa-solid fa-plus"></i>';
-    trashButton.innerText='trash';
+    trashButton.innerHTML='<i class="fa-sharp fa-solid fa-trash"></i>';
+    // trashButton.innerText='trash';
     trashButton.classList.add('trash-btn');
     todoDiv.appendChild(trashButton);
 
@@ -57,3 +60,38 @@ function addTodo(event) {
     todoInput.value='';
 
     }
+
+
+
+
+    function deletecheck(e){
+        const item= e.target;
+
+        //delete todo
+        if(item.classList[0] === "trash-btn"){
+            const todo = item.parentElement;
+
+            todo.remove();
+        }
+            //  striking out checklist check in
+        if(item.classList[0] === "complete-btn"){
+            const todo = item.parentElement;
+            todo.classList.toggle("completed");
+        }
+
+
+    }
+
+    // function check(e){
+    //     const citem= e.target;
+
+    //     //check todo
+    //     if(citem.classList[0] === "complete-btn"){
+    //         const note = document.querySelector('.todo-item');
+    //         note.style.textDecoration= 'line-through';
+    //      //   note.parentElement.style.opacity='0.5';
+    //             note.style.opacity='0.5';
+
+    //     }
+
+    // }
